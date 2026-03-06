@@ -1,6 +1,9 @@
 const express = require("express");
 const app = express();
-const port = 3000;
+
+// 3. dùng dotenv để quản lý biến môi trường - dong PORT trong file .env
+require("dotenv").config();
+const port = process.env.PORT;
 
 //1. dùng pug làm view engine
 app.set("views", "./views");
