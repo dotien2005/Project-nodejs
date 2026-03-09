@@ -8,10 +8,9 @@ const port = process.env.PORT;
 //  4 static file - css, js, image
 app.use(express.static("public"));
 
-// 5 Mongoose - kết nối với mongodb
-const mongoose = require("mongoose");
-mongoose.connect(process.env.Mongo_URL);
-
+// 5 Mongoose - kết nối với mongodb qua file config/database.js
+const database = require("./config/database");
+database.connect();
 //1. dùng pug làm view engine
 app.set("views", "./views");
 app.set("view engine", "pug");
