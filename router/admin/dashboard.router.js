@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 const controler = require("../../controllers/admin/dashboard.controller");
-router.get("/admin/dashboard", controler.dashboard);
+
+router.get("/", controler.dashboard);
 
 module.exports = router;
