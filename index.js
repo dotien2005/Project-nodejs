@@ -9,6 +9,8 @@ app.set("view engine", "pug");
 // 2. dùng router
 const routerClient = require("./router/client/index.router");
 routerClient(app);
+const routerAdmin = require("./router/admin/index.router");
+routerAdmin(app);
 
 // 3. dùng dotenv để quản lý biến môi trường - dong PORT trong file .env
 const port = process.env.PORT;
