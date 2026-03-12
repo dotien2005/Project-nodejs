@@ -1,4 +1,5 @@
 const express = require("express");
+const systemconfig = require("./config/system.js");
 require("dotenv").config();
 const app = express();
 
@@ -21,6 +22,9 @@ app.use(express.static("public"));
 // 5 Mongoose - kết nối với mongodb qua file config/database.js
 const database = require("./config/database");
 database.connect();
+
+// 6 locals Path Admin
+app.locals.prefixAdmin = systemconfig.prefixAdmin;
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
