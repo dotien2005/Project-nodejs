@@ -1,4 +1,7 @@
 extends ../../layouts/default.pug
+include ../../mixins/filterStatus.pug
+include ../../mixins/formSearch.pug
+
 block main
   h1 Trang Sản Phẩm Admin
   p Đây là trang quản lý sản phẩm dành cho quản trị viên.
@@ -8,25 +11,9 @@ block main
     .card-body 
       .row
         .col-6 
-          each item in filterStatus
-            button(
-              class=`btn btn-sm ml-1 btn-outline-success ${item.class}`
-              button-status=item.status
-            ) #{item.name}
+          +filerStatus(filterStatus)
         .col-6 
-          form(id="form-search")
-            .input-group 
-              input.form-control(
-                type="text" 
-                name="keyword" 
-                placeholder="Tìm kiếm sản phẩm..."
-                value= keyword
-                )
-              .input-group-append 
-                button(
-                  type="submit"
-                  class= "btn btn-success"
-                  ) Tìm kiếm
+          +form-Search(keyword)
 
   .card.mb-3 
     .card-header Danh sách sản phẩm
