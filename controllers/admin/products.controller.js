@@ -44,7 +44,10 @@ module.exports.index = async (req, res) => {
   let keyword = "";
   if (req.query.keyword) {
     keyword = req.query.keyword;
-    find.title = keyword;
+    // regex: tìm kiếm gần đúng, i: không phân biệt hoa thường
+    const regex = new RegExp(keyword, "i");
+
+    find.title = regex;
   }
 
   const products = await Product.find(find);
