@@ -40,11 +40,19 @@ module.exports.index = async (req, res) => {
   if (req.query.status) {
     find.status = req.query.status;
   }
+  // 2 tìm kiếm sản phẩm theo keyword
+  let keyword = "";
+  if (req.query.keyword) {
+    keyword = req.query.keyword;
+    find.title = keyword;
+  }
+
   const products = await Product.find(find);
 
   res.render("admin/pages/products/index.pug", {
     pageTitle: "Products",
     productsPug: products,
     filterStatus: filterStatus,
+    keyword: keyword,
   });
 };
