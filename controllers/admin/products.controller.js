@@ -7,7 +7,7 @@ module.exports.index = async (req, res) => {
 
   // 1
   let find = {
-    deleted: false,
+    // deleted: false,
   };
   // filter status
   const filterStatus = filerStatusHelper(req.query);
@@ -21,9 +21,20 @@ module.exports.index = async (req, res) => {
   if (req.query.keyword) {
     find.title = objectSearch.regex;
   }
-
+  // 3 Pagination
+  let objectPagination = {
+    currentPage: 1,
+    limitItem: 6,
+  };
+  if (req.query.page) {
+    objectPagination.currentPage = parseInt(req.query.page);
+  }
+  objectPagination.skip =
+    (objectPagination.currentPage - 1) * objectPagination.limitItem;
   // ==================================================================================
-  const products = await Product.find(find);
+  const products = await Product.find(find)
+    .limit(objectPagination.limitItem)
+    .skip(objectPagination.skip);
 
   res.render("admin/pages/products/index.pug", {
     pageTitle: "Products",
