@@ -56,7 +56,10 @@ block main
 
       - for (var i =1;i<= objectPagination.totalPage; i++)
         li(class=`page-item ${objectPagination.currentPage == i ? 'active' : ''}`)
-          button(class="page-link") #{i}
+          button(
+            class="page-link"
+            button-pagination = i
+            ) #{i}
 
       li(class="page-item")
         button(class="page-link") Sau
