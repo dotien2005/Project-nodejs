@@ -1,6 +1,8 @@
 const Product = require("../../models/product.model");
 const filerStatusHelper = require("../../helpers/filerStatus");
 const searchHelper = require("../../helpers/search");
+const paginationHelper = require("../../helpers/pagination");
+
 // [GET] /admin/products
 module.exports.index = async (req, res) => {
   // console.log(req.query.status);
@@ -22,23 +24,8 @@ module.exports.index = async (req, res) => {
     find.title = objectSearch.regex;
   }
   // 3 Pagination
-  let objectPagination = {
-    currentPage: 1,
-    limitItem: 8,
-  };
-  if (req.query.page) {
-    objectPagination.currentPage = parseInt(req.query.page);
-  }
-  objectPagination.skip =
-    (objectPagination.currentPage - 1) * objectPagination.limitItem;
+  let objectPagination = await paginationHelper(req.query);
 
-  // 3.1 đếm tổng số sản phẩm
-  const countProducts = await Product.countDocuments(find);
-  const totalPage = Math.ceil(countProducts / objectPagination.limitItem);
-  // console.log(countProducts);
-  // console.log(totalPage);
-
-  objectPagination.totalPage = totalPage;
   // ==================================================================================
   const products = await Product.find(find)
     .limit(objectPagination.limitItem)
