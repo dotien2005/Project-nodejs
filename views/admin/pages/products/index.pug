@@ -49,4 +49,14 @@ block main
                   a(href="#" class="btn btn-warning btn-sm") Sửa
                   a(href="#" class="btn btn-danger btn-sm ml-1") Xóa
 
+  nav 
+    ul(class="pagination")
+      li(class="page-item")
+        button(class="page-link") Trước
 
+      - for (var i =1;i<= objectPagination.totalPage; i++)
+        li(class=`page-item ${objectPagination.currentPage == i ? 'active' : ''}`)
+          button(class="page-link") #{i}
+
+      li(class="page-item")
+        button(class="page-link") Sau

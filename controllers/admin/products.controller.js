@@ -31,6 +31,13 @@ module.exports.index = async (req, res) => {
   }
   objectPagination.skip =
     (objectPagination.currentPage - 1) * objectPagination.limitItem;
+
+  // 3.1 đếm tổng số sản phẩm
+  const countProducts = await Product.countDocuments(find);
+  const totalPage = countProducts / objectPagination.limitItem;
+  Math.ceil(totalPage);
+
+  objectPagination.totalPage = totalPage;
   // ==================================================================================
   const products = await Product.find(find)
     .limit(objectPagination.limitItem)
@@ -41,5 +48,6 @@ module.exports.index = async (req, res) => {
     productsPug: products,
     filterStatus: filterStatus,
     keyword: objectSearch.keyword,
+    objectPagination: objectPagination,
   });
 };
