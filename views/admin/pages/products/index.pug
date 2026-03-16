@@ -51,11 +51,12 @@ block main
 
   nav 
     ul(class="pagination")
-      li(class="page-item")
-        button(
-          class="page-link"
-          button-pagination = objectPagination.currentPage - 1
-          ) Trước
+      if(objectPagination.currentPage > 1)
+        li(class="page-item")
+          button(
+            class="page-link"
+            button-pagination = objectPagination.currentPage - 1
+            ) Trước
 
       - for (var i =1;i<= objectPagination.totalPage; i++)
         li(class=`page-item ${objectPagination.currentPage == i ? 'active' : ''}`)
@@ -63,9 +64,9 @@ block main
             class="page-link"
             button-pagination = i
             ) #{i}
-
-      li(class="page-item")
-        button(
-          class="page-link"
-          button-pagination = objectPagination.currentPage + 1
-          ) Sau
+      if(objectPagination.currentPage < objectPagination.totalPage)
+        li(class="page-item")
+          button(
+            class="page-link"
+            button-pagination = objectPagination.currentPage + 1
+            ) Sau

@@ -24,7 +24,7 @@ module.exports.index = async (req, res) => {
   // 3 Pagination
   let objectPagination = {
     currentPage: 1,
-    limitItem: 6,
+    limitItem: 8,
   };
   if (req.query.page) {
     objectPagination.currentPage = parseInt(req.query.page);
@@ -34,8 +34,9 @@ module.exports.index = async (req, res) => {
 
   // 3.1 đếm tổng số sản phẩm
   const countProducts = await Product.countDocuments(find);
-  const totalPage = countProducts / objectPagination.limitItem;
-  Math.ceil(totalPage);
+  const totalPage = Math.ceil(countProducts / objectPagination.limitItem);
+  // console.log(countProducts);
+  // console.log(totalPage);
 
   objectPagination.totalPage = totalPage;
   // ==================================================================================
