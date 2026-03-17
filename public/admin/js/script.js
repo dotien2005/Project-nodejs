@@ -1,4 +1,4 @@
-console.log("Hello World!");
+// console.log("Hello World!");
 // BUTTON ACTIVE
 const buttonStatus = document.querySelectorAll("[button-status]");
 if (buttonStatus.length > 0) {
@@ -47,7 +47,7 @@ if (buttonPagination) {
   let url = new URL(window.location.href);
 
   buttonPagination.forEach((button) => {
-    console.log(button);
+    // console.log(button);
     button.addEventListener("click", () => {
       const page = button.getAttribute("button-pagination");
       console.log(page);
