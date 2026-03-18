@@ -43,6 +43,6 @@ module.exports.index = async (req, res) => {
 module.exports.changeStatus = (req, res) => {
   const status = req.params.status;
   const id = req.params.id;
-  res.send(`change status ${status} with id ${id}`);
+  res.send(` ${status} with id ${id}`);
   res.send("change status");
 };
