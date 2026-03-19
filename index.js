@@ -1,11 +1,11 @@
 const express = require("express");
 const systemconfig = require("./config/system.js");
 require("dotenv").config();
-const app = express();
 
-//1. dùng pug làm view engine
-app.set("views", "./views");
-app.set("view engine", "pug");
+const app = express();
+// 7 đè phương thức
+const methodOverride = require("method-override");
+app.use(methodOverride("_method"));
 
 // 2. dùng router
 const routerClient = require("./router/client/index.router");
@@ -25,6 +25,10 @@ database.connect();
 
 // 6 locals Path Admin
 app.locals.prefixAdmin = systemconfig.prefixAdmin;
+
+//1. dùng pug làm view engine
+app.set("views", "./views");
+app.set("view engine", "pug");
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
