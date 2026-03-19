@@ -40,6 +40,7 @@ module.exports.index = async (req, res) => {
   });
 };
 
+//4 PATCH /admin/products/change-status
 module.exports.changeStatus = async (req, res) => {
   const status = req.params.status;
   const id = req.params.id;
@@ -49,4 +50,10 @@ module.exports.changeStatus = async (req, res) => {
   // res.send("change status");
   res.redirect(req.get("Referrer") || "/");
   // res.redirect("/admin/products");
+};
+
+//4 PATCH /admin/products/changeMulti
+module.exports.changeMulti = async (req, res) => {
+  console.log(req.body);
+  res.send("helo");
 };

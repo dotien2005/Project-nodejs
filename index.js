@@ -3,6 +3,10 @@ const systemconfig = require("./config/system.js");
 require("dotenv").config();
 
 const app = express();
+// 8 RETURN BODY
+const bodyParser = require("body-parser");
+app.use(bodyParser.urlencoded());
+
 // 7 đè phương thức
 const methodOverride = require("method-override");
 app.use(methodOverride("_method"));

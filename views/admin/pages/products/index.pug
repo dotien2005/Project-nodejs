@@ -20,9 +20,33 @@ block main
   .card.mb-3 
     .card-header Danh sách sản phẩm
       .card-body 
-        table.table.table-hover.table-sm 
+        form(
+          action=`/admin/products/change-multi?_method=PATCH`
+          method ="POST"
+          form-change-mutli 
+        )
+          .d-flex.align-items-start 
+            .form-group 
+              select(name="type" class="form-control")
+                option(value="active") Hoạt động 
+                option(Value="inactive") Dừng Hoạt Động 
+            .form-group 
+              input(
+                type="text"
+                name="ids"
+                value=""
+                class="form-control"
+              )
+            button(type="submit" class="btn btn-primary") Áp dụng
+
+        table(
+          class="table.table-hover.table-sm "
+          checkbox-multi
+        )
           thead 
             tr 
+              th 
+                input(type="checkbox" name="checkall")
               th STT 
               th Hình ảnh 
               th Tiêu đề
@@ -31,7 +55,14 @@ block main
               th Hành động
           tbody 
             each item, index in productsPug
+
               tr 
+                td
+                  input(
+                    type="checkbox"
+                    name="id"
+                    value=item.id
+                      )
                 td #{index + 1}
                 td 
                   img(
@@ -73,5 +104,5 @@ block main
   )
 
   script(src="/admin/js/productStatus.js")
-  script(src="/admin/js/helo.js")
+  script(src="/admin/js/productMulti.js")
 
