@@ -5,7 +5,7 @@ require("dotenv").config();
 const app = express();
 // 8 RETURN BODY
 const bodyParser = require("body-parser");
-app.use(bodyParser.urlencoded());
+app.use(bodyParser.urlencoded({ extended: false }));
 
 // 7 đè phương thức
 const methodOverride = require("method-override");

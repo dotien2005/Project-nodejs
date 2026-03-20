@@ -22,12 +22,10 @@ block main
     .card.mb-3
       .card-header Danh sách sản phẩm
       .card-body
-
-        // Form hành động nhiều
         form(
           action=`/admin/products/change-multi?_method=PATCH`
           method="POST"
-          form-change-mutli
+          form-change-multi
         )
           .d-flex.align-items-start
             .form-group
@@ -39,7 +37,6 @@ block main
                 type="text"
                 name="ids"
                 value=""
-
               )
             button.btn.btn-primary(type="submit") Áp dụng
 

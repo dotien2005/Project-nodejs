@@ -1,11 +1,12 @@
 // Check box
+console.log("hi");
 const checkboxMulti = document.querySelector("[checkbox-multi]");
 if (checkboxMulti) {
   // tích chọn tất cả
   const inputCheckAll = checkboxMulti.querySelector("input[name='checkall']");
   const inputsId = checkboxMulti.querySelectorAll("input[name='id']");
-  console.log(inputCheckAll);
-  console.log(inputsId);
+  // console.log(inputCheckAll);
+  // console.log(inputsId);
   inputCheckAll.addEventListener("click", () => {
     if (inputCheckAll.checked) {
       inputsId.forEach((item) => {
@@ -32,5 +33,28 @@ if (checkboxMulti) {
         inputCheckAll.checked = false;
       }
     });
+  });
+}
+// FORM ChangeMulti
+const formChangeMulti = document.querySelector("[form-change-multi]");
+if (formChangeMulti) {
+  formChangeMulti.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const checkboxMulti = document.querySelector("[checkbox-multi]");
+    const InputChecked = checkboxMulti.querySelectorAll(
+      "input[name='id']:checked",
+    );
+    if (InputChecked.length > 0) {
+      let ids = [];
+      const inputIds = formChangeMulti.querySelector("input[name='ids']");
+      InputChecked.forEach((input) => {
+        const id = input.getAttribute("value");
+        ids.push(id);
+        inputIds.value = ids.join(", ");
+        formChangeMulti.submit();
+      });
+    } else {
+      alert("vui lofng chojn");
+    }
   });
 }
