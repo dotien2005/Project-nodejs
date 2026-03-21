@@ -1,5 +1,5 @@
 // click Check box all
-console.log("hi");
+
 const checkboxMulti = document.querySelector("[checkbox-multi]");
 if (checkboxMulti) {
   // tích chọn tất cả
