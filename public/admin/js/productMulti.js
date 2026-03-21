@@ -1,4 +1,4 @@
-// Check box
+// click Check box all
 console.log("hi");
 const checkboxMulti = document.querySelector("[checkbox-multi]");
 if (checkboxMulti) {
@@ -19,7 +19,7 @@ if (checkboxMulti) {
     }
   });
 
-  // tích chọn
+  // tích chọn tích hợp
   inputsId.forEach((input) => {
     // console.log(inputsId.length);
     input.addEventListener("click", () => {
@@ -54,7 +54,7 @@ if (formChangeMulti) {
         formChangeMulti.submit();
       });
     } else {
-      alert("vui lofng chojn");
+      alert("Vui lòng chọn lại");
     }
   });
 }
