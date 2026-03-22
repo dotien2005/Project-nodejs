@@ -44,6 +44,21 @@ if (formChangeMulti) {
     const InputChecked = checkboxMulti.querySelectorAll(
       "input[name='id']:checked",
     );
+    // Phần xoá nhiều sản phẩm
+
+    const typeFormChange = e.target.elements.type.value;
+    console.log(typeFormChange);
+    if (typeFormChange == "deleted") {
+      const iconform = confirm(
+        "Bạn chắc chắn muốn xoá các sản phẩm đã chọn chứ?",
+      );
+      if (!iconform) {
+        return;
+      }
+    }
+
+    //end Phần xoá nhiều sản phẩm
+
     if (InputChecked.length > 0) {
       let ids = [];
       const inputIds = formChangeMulti.querySelector("input[name='ids']");
