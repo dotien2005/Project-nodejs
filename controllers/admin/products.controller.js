@@ -76,7 +76,10 @@ module.exports.deleteItem = async (req, res) => {
   // await Product.deleteOne({ _id: id });
 
   //  xoá mềm :
-  await Product.updateOne({ _id: id }, { deleted: false });
+  await Product.updateOne(
+    { _id: id },
+    { deleted: false, deletedAt: new Date() },
+  );
 
   res.redirect(req.get("Referrer") || "/");
 };
