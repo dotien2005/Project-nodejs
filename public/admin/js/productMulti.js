@@ -47,7 +47,7 @@ if (formChangeMulti) {
     // Phần xoá nhiều sản phẩm
 
     const typeFormChange = e.target.elements.type.value;
-    console.log(typeFormChange);
+    // console.log(typeFormChange);
     if (typeFormChange == "deleted") {
       const iconform = confirm(
         "Bạn chắc chắn muốn xoá các sản phẩm đã chọn chứ?",
@@ -62,9 +62,21 @@ if (formChangeMulti) {
     if (InputChecked.length > 0) {
       let ids = [];
       const inputIds = formChangeMulti.querySelector("input[name='ids']");
+
       InputChecked.forEach((input) => {
         const id = input.getAttribute("value");
-        ids.push(id);
+
+        if (typeFormChange == "change-position") {
+          const position = input
+            .closest("tr")
+            .querySelector("input[name='position']").value;
+          console.log(`${id}-${position}`);
+
+          ids.push(`${id}-${position}`);
+        } else {
+          ids.push(id);
+        }
+
         inputIds.value = ids.join(", ");
         formChangeMulti.submit();
       });
