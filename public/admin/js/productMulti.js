@@ -70,7 +70,8 @@ if (formChangeMulti) {
           const position = input
             .closest("tr")
             .querySelector("input[name='position']").value;
-          console.log(`${id}-${position}`);
+
+          // console.log(`${id}-${position}`);
 
           ids.push(`${id}-${position}`);
         } else {

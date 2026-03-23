@@ -70,6 +70,19 @@ module.exports.changeMulti = async (req, res) => {
         { deleted: true, deletedAt: new Date() },
       );
       break;
+    case "change-position":
+      // console.log(ids);
+      for (const item of ids) {
+        // console.log(item);
+        // console.log(item.split("-"));
+        let [id, position] = item.split("-");
+        position = parseInt(position);
+        // console.log(id);
+        // console.log(position);
+
+        await Product.updateOne({ _id: id }, { position: position });
+      }
+      break;
   }
   res.redirect(req.get("Referrer") || "/");
 };
