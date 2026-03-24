@@ -11,12 +11,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 const methodOverride = require("method-override");
 app.use(methodOverride("_method"));
 
-// 2. dùng router
-const routerClient = require("./router/client/index.router");
-routerClient(app);
-const routerAdmin = require("./router/admin/index.router");
-routerAdmin(app);
-
 // 3. dùng dotenv để quản lý biến môi trường - dong PORT trong file .env
 const port = process.env.PORT;
 
@@ -33,7 +27,20 @@ app.locals.prefixAdmin = systemconfig.prefixAdmin;
 //1. dùng pug làm view engine
 app.set("views", "./views");
 app.set("view engine", "pug");
+//  9 hiển thị thông báo
+const flash = require("express-flash");
+const cookieParser = require("cookie-parser");
+const session = require("express-session");
+app.use(cookieParser("keyboard cat"));
+app.use(session({ cookie: { maxAge: 60000 } }));
+app.use(flash());
+// end 9
 
+// 2. dùng router
+const routerClient = require("./router/client/index.router");
+routerClient(app);
+const routerAdmin = require("./router/admin/index.router");
+routerAdmin(app);
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });

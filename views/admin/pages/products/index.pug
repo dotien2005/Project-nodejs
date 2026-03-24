@@ -9,7 +9,9 @@ block main
   .container-fluid
     h1.mb-3 Trang Sản Phẩm Admin
     p Đây là trang quản lý sản phẩm dành cho quản trị viên.
-
+    - if (messages.info)
+      .message.info
+        span= messages.info
     // Bộ lọc + tìm kiếm
     .card.mb-3
       .card-header Bộ lọc và Tìm kiếm
