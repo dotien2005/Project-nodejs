@@ -113,3 +113,10 @@ module.exports.deleteItem = async (req, res) => {
   );
   res.redirect(req.get("Referrer") || "/");
 };
+
+// 6 GET : admin/products/create
+module.exports.create = (req, res) => {
+  res.render("admin/pages/products/create.pug", {
+    pageTitle: "Create Products",
+  });
+};
