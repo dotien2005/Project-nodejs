@@ -60,10 +60,14 @@ module.exports.changeMulti = async (req, res) => {
   switch (type) {
     case "active":
       await Product.updateMany({ _id: { $in: ids } }, { status: "active" });
+      req.flash("success", `Cập nhật thành công ${ids.length} sản phẩm`);
+
       break;
 
     case "inactive":
       await Product.updateMany({ _id: { $in: ids } }, { status: "inactive" });
+      req.flash("success", `Cập nhật thành công ${ids.length} sản phẩm`);
+
       break;
 
     case "deleted":
@@ -71,6 +75,8 @@ module.exports.changeMulti = async (req, res) => {
         { _id: { $in: ids } },
         { deleted: true, deletedAt: new Date() },
       );
+      req.flash("success", `Xoá mềm  thành công ${ids.length} sản phẩm`);
+
       break;
     case "change-position":
       // console.log(ids);
@@ -83,6 +89,10 @@ module.exports.changeMulti = async (req, res) => {
         // console.log(position);
 
         await Product.updateOne({ _id: id }, { position: position });
+        req.flash(
+          "success",
+          `thay đổi vị trí  thành công ${ids.length} sản phẩm`,
+        );
       }
       break;
   }
