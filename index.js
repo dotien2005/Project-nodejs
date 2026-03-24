@@ -3,6 +3,16 @@ const systemconfig = require("./config/system.js");
 require("dotenv").config();
 
 const app = express();
+
+// 9 show thông báo
+const flash = require("express-flash");
+const cookieParser = require("cookie-parser");
+const session = require("express-session");
+app.use(cookieParser("AHBCĐNDAER"));
+app.use(session({ cookie: { maxAge: 60000 } }));
+app.use(flash());
+// end 9
+
 // 8 RETURN BODY
 const bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -27,14 +37,6 @@ app.locals.prefixAdmin = systemconfig.prefixAdmin;
 //1. dùng pug làm view engine
 app.set("views", "./views");
 app.set("view engine", "pug");
-//  9 hiển thị thông báo
-const flash = require("express-flash");
-const cookieParser = require("cookie-parser");
-const session = require("express-session");
-app.use(cookieParser("keyboard cat"));
-app.use(session({ cookie: { maxAge: 60000 } }));
-app.use(flash());
-// end 9
 
 // 2. dùng router
 const routerClient = require("./router/client/index.router");

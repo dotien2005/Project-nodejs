@@ -49,7 +49,7 @@ module.exports.changeStatus = async (req, res) => {
   await Product.updateOne({ _id: id }, { status: status });
   // res.send(` ${status} with id ${id}`);
   // res.send("change status");
-  req.flash("info", "Welcome");
+  req.flash("success", "Cập nhật trạng thái sản phẩm thành công");
   res.redirect(req.get("Referrer") || "/");
 };
 
