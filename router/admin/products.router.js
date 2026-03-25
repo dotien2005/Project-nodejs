@@ -13,4 +13,6 @@ router.delete("/delete/:id", controler.deleteItem);
 // tạo sản phẩm
 router.get("/create", controler.create);
 
+router.post("/create", controler.createPost);
+
 module.exports = router;

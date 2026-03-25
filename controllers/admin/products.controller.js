@@ -120,3 +120,8 @@ module.exports.create = (req, res) => {
     pageTitle: "Create Products",
   });
 };
+
+// 6 POST : admin/products/create
+module.exports.createPost = async (req, res) => {
+  res.send("okee");
+};
