@@ -2,6 +2,7 @@ const Product = require("../../models/product.model");
 const filerStatusHelper = require("../../helpers/filerStatus");
 const searchHelper = require("../../helpers/search");
 const paginationHelper = require("../../helpers/pagination");
+const systemConfig = require("../../config/system");
 
 // [GET] /admin/products
 module.exports.index = async (req, res) => {
@@ -134,7 +135,7 @@ module.exports.createPost = async (req, res) => {
     req.body.position = parseInt(req.body.position);
   }
   const product = new Product(req.body);
-  // await product.save();
+  await product.save();
   // console.log(product);
-  res.redirect(`/admin/products`);
+  res.redirect(`${systemConfig.prefixAdmin}/products`);
 };
