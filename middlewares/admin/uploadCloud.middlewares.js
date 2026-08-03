@@ -28,11 +28,9 @@ module.exports.uploadCloud = (req, res, next) => {
       // console.log(result.secure_url);
       // req.body.thumbnail = result.secure_url;
       req.body[req.file.fieldname] = result.secure_url;
-      next();
     };
 
     uploadToCloudinary(req);
-  } else {
-    next();
   }
+  next();
 };
