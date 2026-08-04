@@ -19,18 +19,18 @@ let streamUpload = (buffer) => {
     streamifier.createReadStream(buffer).pipe(stream);
   });
 };
-module.exports.uploadCloud = (req, res, next) => {
+const uploadToCloudinary = async (req) => {
+  let result = await streamUpload(req.file.buffer);
+  return result.secure_url;
+  // console.log(result);
+
+  // console.log(result.secure_url);
+  // req.body.thumbnail = result.secure_url;
+};
+module.exports.upload = async (req, res, next) => {
   if (req.file) {
-    const uploadToCloudinary = async (req) => {
-      let result = await streamUpload(req.file.buffer);
-      // console.log(result);
-
-      // console.log(result.secure_url);
-      // req.body.thumbnail = result.secure_url;
-      req.body[req.file.fieldname] = result.secure_url;
-    };
-
-    uploadToCloudinary(req);
+    const link = await uploadToCloudinary(req);
+    req.body[req.file.fieldname] = link;
   }
   next();
 };
