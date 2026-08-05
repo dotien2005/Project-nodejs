@@ -5,6 +5,7 @@ const CartRouter = require("./cart.router");
 const CheckoutRouter = require("./checkout.router");
 const UserRouter = require("./user.router");
 const ChatRouter = require("./chat.router");
+const usersRouter = require("./users.router");
 const categoryMiddleware = require("../../middlewares/client/caterogy.middlewares");
 const cartMiddleware = require("../../middlewares/client/cart.middlewares");
 // middlewares dành cho không hiển thị thanh header
@@ -25,4 +26,5 @@ module.exports = (app) => {
   app.use("/checkout", CheckoutRouter);
   app.use("/user", UserRouter);
   app.use("/chat", authMiddleware.requireAuth, ChatRouter);
+  app.use("/users", authMiddleware.requireAuth, usersRouter);
 };
