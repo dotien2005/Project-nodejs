@@ -5,9 +5,9 @@ module.exports.notFriend = async (req, res) => {
     _id: { $ne: userId },
     status: "active",
     deleted: false,
-  });
-  console.log(users);
+  }).select("id fullName");
   res.render("client/pages/users/not-friend", {
     title: "Not Friend",
+    users: users,
   });
 };
