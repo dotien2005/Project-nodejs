@@ -1,3 +1,5 @@
 module.exports.notFriend = (req, res) => {
-  res.send("ok");
+  res.render("client/pages/users/not-friend", {
+    title: "Not Friend",
+  });
 };
