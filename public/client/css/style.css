@@ -415,3 +415,105 @@
   }
 }
 /* end typing */
+
+/* not-friend */
+/* Danh sách người dùng */
+.box-user {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 18px;
+  margin-bottom: 15px;
+  background: #fff;
+  border-radius: 14px;
+  border: 1px solid #ececec;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s ease;
+}
+
+.box-user:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+}
+
+/* Avatar */
+.box-user .inner-avatar {
+  flex-shrink: 0;
+}
+
+.box-user .inner-avatar img {
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #0d6efd;
+}
+
+/* Thông tin */
+.box-user .inner-info {
+  flex: 1;
+  margin-left: 18px;
+}
+
+.box-user .inner-name {
+  font-size: 18px;
+  font-weight: 600;
+  color: #222;
+  margin-bottom: 10px;
+}
+
+/* Nút */
+.box-user .inner-buttons {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* Button chung */
+.box-user .btn {
+  border-radius: 30px;
+  padding: 7px 18px;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.25s ease;
+}
+
+/* Kết bạn */
+.box-user .btn-primary {
+  background: #1877f2;
+  border: none;
+}
+
+.box-user .btn-primary:hover {
+  background: #0d65d9;
+  transform: scale(1.05);
+}
+
+/* Hủy */
+.box-user .btn-secondary {
+  background: #e4e6eb;
+  border: none;
+  color: #050505;
+}
+
+.box-user .btn-secondary:hover {
+  background: #d8dade;
+  color: #000;
+  transform: scale(1.05);
+}
+
+/* Responsive */
+@media (max-width: 576px) {
+  .box-user {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .box-user .inner-info {
+    margin: 15px 0 0;
+  }
+
+  .box-user .inner-buttons {
+    justify-content: center;
+  }
+}
