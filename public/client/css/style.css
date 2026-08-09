@@ -489,6 +489,17 @@
   transform: scale(1.05);
 }
 
+.box-user [btn-cancel-friend] {
+  display: none;
+}
+
+.box-user.add [btn-add-friend] {
+  display: none;
+}
+
+.box-user.add [btn-cancel-friend] {
+  display: inline-block;
+}
 /* Hủy */
 .box-user .btn-secondary {
   background: #e4e6eb;
