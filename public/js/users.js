@@ -5,7 +5,10 @@ if (listBtnAddFriend.length > 0) {
   listBtnAddFriend.forEach((button) => {
     button.addEventListener("click", () => {
       const userId = button.getAttribute("btn-add-friend");
-      console.log("User ID:", userId);
+      // console.log("User ID:", userId);
+      // console.log(button.closest(".box-user"));
+      button.closest(".box-user").classList.add("add");
+      soket.emit("CLIENT_ADD_FRIEND", userId);
     });
   });
 }
