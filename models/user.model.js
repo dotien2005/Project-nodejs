@@ -18,8 +18,8 @@ const userschema = new mongoose.Schema(
       type: String,
       default: "active",
     },
-    requestFriend: Array,
-    acceptFriend: Array,
+    requestFriend: Array, // lời mời đã gửi
+    acceptFriend: Array, // lời mời đã nhận
     friendList: [
       {
         user_id: String,
