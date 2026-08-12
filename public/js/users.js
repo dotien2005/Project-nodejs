@@ -8,7 +8,7 @@ if (listBtnAddFriend.length > 0) {
       // console.log("User ID:", userId);
       // console.log(button.closest(".box-user"));
       button.closest(".box-user").classList.add("add");
-      soket.emit("CLIENT_ADD_FRIEND", userId);
+      socket.emit("CLIENT_ADD_FRIEND", userId);
     });
   });
 }
