@@ -24,6 +24,21 @@ module.exports = (res) => {
         );
       }
       // thêm id của b vào requestFriend của a
+
+      const exitIdBinA = await User.findOne({
+        _id: myUserId,
+        requestFriend: userId,
+      });
+      if (!exitIdBinA) {
+        await User.updateOne(
+          {
+            _id: myUserId,
+          },
+          {
+            $push: { requestFriend: userId },
+          },
+        );
+      }
     });
   });
 };
