@@ -8,8 +8,14 @@ module.exports.notFriend = async (req, res) => {
   // end socket
 
   const userId = res.locals.user.id;
+
+  const myUser = await User.findOne({
+    _id: userId,
+  });
+  const requestFriend = myUser.requestFriend;
   const users = await User.find({
-    _id: { $ne: userId },
+    // _id: { $ne: userId },
+    _id: { $nin: requestFriend },
     status: "active",
     deleted: false,
   }).select("id fullName");
