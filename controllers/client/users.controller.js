@@ -29,3 +29,8 @@ module.exports.notFriend = async (req, res) => {
     users: users,
   });
 };
+
+// GET REQUEST FRIEND user/request
+module.exports.requestFriend = async (req, res) => {
+  res.send("request friend");
+};
