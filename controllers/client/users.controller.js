@@ -32,7 +32,25 @@ module.exports.notFriend = async (req, res) => {
 
 // GET REQUEST FRIEND user/request
 module.exports.requestFriend = async (req, res) => {
+  // SOCKET
+  userSocket(res);
+  // end socket
+
+  const userId = res.locals.user.id;
+
+  const myUser = await User.findOne({
+    _id: userId,
+  });
+  const requestFriend = myUser.requestFriend;
+  const acceptFriend = myUser.acceptFriend;
+  const users = await User.find({
+    _id: { $in: requestFriend },
+
+    status: "active",
+    deleted: false,
+  }).select("id fullName");
   res.render("client/pages/users/request", {
     title: "Request Friend",
+    users: users,
   });
 };
