@@ -54,3 +54,27 @@ module.exports.requestFriend = async (req, res) => {
     users: users,
   });
 };
+
+// GET ACCEPT FRIEND user/accept
+module.exports.accept = async (req, res) => {
+  // SOCKET
+  userSocket(res);
+  // end socket
+
+  const userId = res.locals.user.id;
+
+  const myUser = await User.findOne({
+    _id: userId,
+  });
+  const acceptFriend = myUser.acceptFriend;
+  const users = await User.find({
+    _id: { $in: acceptFriend },
+
+    status: "active",
+    deleted: false,
+  }).select("id fullName");
+  res.render("client/pages/users/accept", {
+    title: "Accept Friend",
+    users: users,
+  });
+};
