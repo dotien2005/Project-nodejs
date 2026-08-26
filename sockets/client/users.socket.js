@@ -123,5 +123,48 @@ module.exports = (res) => {
         );
       }
     });
+
+    // 4 chức năng chấp nhận lời mời kết bạn
+    socket.on("CLIENT_ACCEPT_FRIEND", async (userId) => {
+      const myUserId = res.locals.user.id;
+      // console.log(myUserId);
+      // console.log(myUserId); // id của b
+      // console.log(userId); // id của a
+      //  thêm user_id. room_chat_id của a vào friend của b
+      // thêm user_id, room_chat_id của b vào friend của a
+
+      // =======
+      // xóa id của a trong acceptFriend của b
+      const exitIdAinB = await User.findOne({
+        _id: myUserId,
+        acceptFriend: userId,
+      });
+      if (exitIdAinB) {
+        await User.updateOne(
+          {
+            _id: myUserId,
+          },
+          {
+            $pull: { acceptFriend: userId },
+          },
+        );
+      }
+      // xóa id của b vào requestFriend của a
+
+      const exitIdBinA = await User.findOne({
+        _id: userId,
+        requestFriend: myUserId,
+      });
+      if (exitIdBinA) {
+        await User.updateOne(
+          {
+            _id: userId,
+          },
+          {
+            $pull: { requestFriend: myUserId },
+          },
+        );
+      }
+    });
   });
 };
