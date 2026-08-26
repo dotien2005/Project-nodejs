@@ -82,5 +82,46 @@ module.exports = (res) => {
         );
       }
     });
+
+    // 3 chức năng xóa lời mời kết bạn
+    socket.on("CLIENT_REFUSE_FRIEND", async (userId) => {
+      const myUserId = res.locals.user.id;
+      // console.log(myUserId);
+      // console.log(myUserId); // id của b
+      // console.log(userId); // id của a
+
+      // =======
+      // xóa id của a trong acceptFriend của b
+      const exitIdAinB = await User.findOne({
+        _id: myUserId,
+        acceptFriend: userId,
+      });
+      if (exitIdAinB) {
+        await User.updateOne(
+          {
+            _id: myUserId,
+          },
+          {
+            $pull: { acceptFriend: userId },
+          },
+        );
+      }
+      // xóa id của b vào requestFriend của a
+
+      const exitIdBinA = await User.findOne({
+        _id: userId,
+        requestFriend: myUserId,
+      });
+      if (exitIdBinA) {
+        await User.updateOne(
+          {
+            _id: userId,
+          },
+          {
+            $pull: { requestFriend: myUserId },
+          },
+        );
+      }
+    });
   });
 };

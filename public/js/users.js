@@ -31,3 +31,20 @@ if (listBtnCancelFriend.length > 0) {
   });
 }
 // end chức năng hủy yêu cầu
+
+// chức năng xóa lời mời kb
+const listBtnRefuseFriend = document.querySelectorAll("[btn-refuse-friend]");
+if (listBtnRefuseFriend.length > 0) {
+  listBtnRefuseFriend.forEach((button) => {
+    button.addEventListener("click", () => {
+      console.log("Refuse friend button clicked");
+      // console.log("User ID:", userId);
+      // console.log(button.closest(".box-user"));
+      button.closest(".box-user").classList.remove("refuse");
+      const userId = button.getAttribute("btn-refuse-friend");
+
+      socket.emit("CLIENT_REFUSE_FRIEND", userId);
+    });
+  });
+}
+// end chức năng xóa lời mời kb
