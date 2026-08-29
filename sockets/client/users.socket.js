@@ -145,6 +145,12 @@ module.exports = (res) => {
             _id: myUserId,
           },
           {
+            $push: {
+              friendList: {
+                user_id: userId,
+                room_chat_id: "",
+              },
+            },
             $pull: { acceptFriend: userId },
           },
         );
@@ -161,6 +167,12 @@ module.exports = (res) => {
             _id: userId,
           },
           {
+            $push: {
+              friendList: {
+                user_id: myUserId,
+                room_chat_id: "",
+              },
+            },
             $pull: { requestFriend: myUserId },
           },
         );
