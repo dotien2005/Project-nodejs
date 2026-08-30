@@ -40,6 +40,14 @@ module.exports = (res) => {
           },
         );
       }
+      // lấy ra độ dài acceptFriend của b và requestFriend của a để gửi về cho client
+      const infoUserB = await User.findOne({ _id: userId });
+      const lengthAcceptFriends = inforUserB.acceptFriend.length;
+      socket.broadcast.emit("SERVER_RETURN_LECNGTH_ACCEPT_FRIENDS", {
+        userId: userId,
+        lengthAcceptFriends: lengthAcceptFriends,
+      });
+      const inforUserA = await User.findOne({ _id: myUserId });
     });
 
     // 2 chức năng hủy yêu cầu kết bạn
