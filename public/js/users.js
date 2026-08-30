@@ -67,7 +67,16 @@ if (listBtnAcceptFriend.length > 0) {
 // end chức năng chấp nhận lời mời kb
 
 // SERRVER_RETURN_LECNGTH_ACCEPT_FRIENDS
-socket.on("SERRVER_RETURN_LECNGTH_ACCEPT_FRIENDS", (data) => {
-  console.log(data);
-});
+const badgeUserAccept = document.querySelector("[badge-user-accept]");
+
+if (badgeUserAccept) {
+  const userId = badgeUserAccept.getAttribute("badge-user-accept");
+
+  socket.on("SERRVER_RETURN_LECNGTH_ACCEPT_FRIENDS", (data) => {
+    console.log(data);
+    if (userId == data.userId) {
+      badgeUserAccept.innerHTML = data.lengthAcceptFriends;
+    }
+  });
+}
 // END SERVER_RETURN_LECNGTH_ACCEPT_FRIENDS
