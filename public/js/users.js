@@ -65,3 +65,9 @@ if (listBtnAcceptFriend.length > 0) {
   });
 }
 // end chức năng chấp nhận lời mời kb
+
+// SERRVER_RETURN_LECNGTH_ACCEPT_FRIENDS
+socket.on("SERRVER_RETURN_LECNGTH_ACCEPT_FRIENDS", (data) => {
+  console.log(data);
+});
+// END SERVER_RETURN_LECNGTH_ACCEPT_FRIENDS
