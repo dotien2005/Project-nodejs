@@ -80,3 +80,10 @@ if (badgeUserAccept) {
   });
 }
 // END SERVER_RETURN_LECNGTH_ACCEPT_FRIENDS
+
+// SERVER_RETURN_INFO_ACCEPT_FRIEND
+socket.on("SERVER_RETURN_INFO_ACCEPT_FRIEND", (data) => {
+  console.log(data);
+});
+
+// END SERVER_RETURN_INFO_ACCEPT_FRIEND
