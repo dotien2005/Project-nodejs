@@ -82,8 +82,33 @@ if (badgeUserAccept) {
 // END SERVER_RETURN_LECNGTH_ACCEPT_FRIENDS
 
 // SERVER_RETURN_INFO_ACCEPT_FRIEND
-socket.on("SERVER_RETURN_INFO_ACCEPT_FRIEND", (data) => {
-  console.log(data);
-});
+const dataUsersAccept = document.querySelector("[data-users-accept]");
+if (dataUsersAccept) {
+  const userId = dataUsersAccept.getAttribute("data-users-accept");
+
+  socket.on("SERVER_RETURN_INFO_ACCEPT_FRIEND", (data) => {
+    if (userId == data.userId) {
+      const div = document.createElement("div");
+      div.classList.add("col-6");
+      div.innerHTML = `
+        <div class="box-user">
+          <div class="inner-avatar">
+            <img src="/images/avatar.png" alt="${data.infoUserA.fullName}">
+          </div>
+          <div class="inner-info">
+            <div class="inner-name">Le Van A</div>
+            <div class="inner-buttons">
+              <button class="btn btn-sm btn-primary mr-1" btn-accept-friend="${data.infoUserA._id}">Chấp nhận</button>
+              <button class="btn btn-sm btn-secondary mr-1" btn-refuse-friend="652ff407af643d08c31eaaf9">Xóa</button>
+              <button class="btn btn-sm btn-secondary mr-1" btn-deleted-friend="" disabled="">Đã xóa</button>
+              <button class="btn btn-sm btn-primary mr-1" btn-accepted-friend="" disabled="">Đã chấp nhận</button>
+            </div>
+          </div>
+        </div>
+      `;
+      dataUsersAccept.appendChild(div);
+    }
+  });
+}
 
 // END SERVER_RETURN_INFO_ACCEPT_FRIEND
