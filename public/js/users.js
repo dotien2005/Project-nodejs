@@ -31,20 +31,21 @@ if (listBtnCancelFriend.length > 0) {
   });
 }
 // end chức năng hủy yêu cầu
+// ham xoa loimoikb
 
+const refuseFriend = (button) => {
+  button.addEventListener("click", () => {
+    console.log("Accept friend button clicked");
+    button.closest(".box-user").classList.add("accept");
+    const userId = button.getAttribute("btn-accept-friend");
+    socket.emit("CLIENT_ACCEPT_FRIEND", userId);
+  });
+};
 // chức năng xóa lời mời kb
 const listBtnRefuseFriend = document.querySelectorAll("[btn-refuse-friend]");
 if (listBtnRefuseFriend.length > 0) {
   listBtnRefuseFriend.forEach((button) => {
-    button.addEventListener("click", () => {
-      console.log("Refuse friend button clicked");
-      // console.log("User ID:", userId);
-      // console.log(button.closest(".box-user"));
-      button.closest(".box-user").classList.add("refuse");
-      const userId = button.getAttribute("btn-refuse-friend");
-
-      socket.emit("CLIENT_REFUSE_FRIEND", userId);
-    });
+    refuseFriend(button);
   });
 }
 // end chức năng xóa lời mời kb
@@ -110,12 +111,8 @@ if (dataUsersAccept) {
 
       // bắt sự kiện hủy lời mời kb
       const buttonRefuse = div.querySelector("[btn-refuse-friend]");
-      buttonRefuse.addEventListener("click", () => {
-        buttonRefuse.closest(".box-user").classList.add("refuse");
-        const userId = buttonRefuse.getAttribute("btn-refuse-friend");
+      refuseFriend(buttonRefuse);
 
-        socket.emit("CLIENT_REFUSE_FRIEND", userId);
-      });
       // end bắt sự kiện hủy lời mời kb
     }
   });
