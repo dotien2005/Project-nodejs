@@ -107,6 +107,16 @@ if (dataUsersAccept) {
         </div>
       `;
       dataUsersAccept.appendChild(div);
+
+      // bắt sự kiện hủy lời mời kb
+      const buttonRefuse = div.querySelector("[btn-refuse-friend]");
+      buttonRefuse.addEventListener("click", () => {
+        buttonRefuse.closest(".box-user").classList.add("refuse");
+        const userId = buttonRefuse.getAttribute("btn-refuse-friend");
+
+        socket.emit("CLIENT_REFUSE_FRIEND", userId);
+      });
+      // end bắt sự kiện hủy lời mời kb
     }
   });
 }
