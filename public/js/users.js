@@ -95,6 +95,7 @@ if (dataUsersAccept) {
     if (userId == data.userId) {
       const div = document.createElement("div");
       div.classList.add("col-6");
+      div.setAttribute("user-id", data.infoUserA._id);
       div.innerHTML = `
         <div class="box-user">
           <div class="inner-avatar">
